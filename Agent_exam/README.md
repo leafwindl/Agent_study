@@ -102,14 +102,21 @@ LLM 是无状态的，每轮都会重发完整历史；「记住」= 「把历�
 
 ### 配置
 
-在项目根目录建 `.env`：
+复制模板并填入真实值：
 
-```ini
-DeepSeek_API_KEY=sk-xxxx
-BASE_URL=https://api.deepseek.com
-MODEL_NAME=deepseek-chat
+```powershell
+cd Agent_exam
+Copy-Item .env.sample .env
 ```
 
+```ini
+DeepSeek_API_KEY=sk-your-key-here
+BASE_URL=https://api.deepseek.com
+MODEL_NAME=deepseek-chat
+USE_REAL_LLM=1          # 1=真实模型，0 或不设=mock
+```
+
+> `.env` 已在 `.gitignore` 中，**不会被提交**；仓库里只有不含密钥的 `.env.sample`。
 > **代码中不出现任何密钥**，全部从环境变量读取；
 > `DeepSeekClient` 构造时若拿不到 key 会直接抛 `LLMError`，不会静默失败。
 
